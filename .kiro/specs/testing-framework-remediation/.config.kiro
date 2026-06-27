@@ -1,0 +1,102 @@
+{
+  "specId": "testing-framework-remediation",
+  "name": "Testing Framework Remediation",
+  "description": "Complete remediation of testing framework infrastructure gaps: CI/CD pipeline, coverage enforcement, frontend testing framework, and documentation",
+  "status": "ready",
+  "version": "1.0",
+  "createdDate": "2026-06-27",
+  "author": "Kiro Audit",
+  "baseFilePath": ".kiro/specs/testing-framework-remediation",
+  "estimatedHours": 54,
+  "priority": "high",
+  "phase": "production-readiness",
+  "metrics": {
+    "totalTasks": 48,
+    "criticalPath": 16,
+    "documentation": 8,
+    "validation": 6
+  },
+  "successCriteria": [
+    "Coverage measurement configured and enforced",
+    "GitHub Actions CI/CD pipeline active",
+    "Frontend testing framework implemented",
+    "Pre-commit hooks preventing bad commits",
+    "All 22 property tests implemented",
+    "Comprehensive documentation complete",
+    "Team can write tests independently"
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "title": "CI/CD timeout issues",
+      "mitigation": "Parallel job execution, test filtering by affected files"
+    },
+    {
+      "id": "R2",
+      "title": "Flaky test failures",
+      "mitigation": "Fixed random seeds, async patterns, retry logic in tests"
+    },
+    {
+      "id": "R3",
+      "title": "Frontend framework compatibility",
+      "mitigation": "Use stable versions, test in CI early, fallback patterns documented"
+    },
+    {
+      "id": "R4",
+      "title": "Coverage regression",
+      "mitigation": "Gating prevents merge if coverage decreases, trend alerts"
+    }
+  ],
+  "dependencies": {
+    "internal": [
+      "existing-test-projects",
+      "github-actions-access",
+      "npm-registry-access"
+    ],
+    "external": [
+      "github.com",
+      "nuget.org",
+      "npmjs.com"
+    ]
+  },
+  "phases": {
+    "phase1": {
+      "name": "CI/CD Foundation",
+      "weeks": 1,
+      "tasks": 16,
+      "effort": "12 hours",
+      "milestone": "Coverage gating active"
+    },
+    "phase2": {
+      "name": "Frontend Framework",
+      "weeks": 2,
+      "tasks": 16,
+      "effort": "24-32 hours",
+      "milestone": "Frontend tests in CI/CD"
+    },
+    "phase3": {
+      "name": "Backend Properties",
+      "weeks": 1,
+      "tasks": 8,
+      "effort": "8 hours",
+      "milestone": "All 22 properties implemented"
+    },
+    "phase4": {
+      "name": "Documentation & Validation",
+      "weeks": 1,
+      "tasks": 8,
+      "effort": "10 hours",
+      "milestone": "Team ready for maintenance"
+    }
+  },
+  "reviewChecklist": [
+    "All coverage configuration files created and tested",
+    "GitHub Actions workflow passes on sample PR",
+    "Pre-commit hooks installed and working locally",
+    "All property test extractions verified",
+    "Frontend tests running with coverage",
+    "Documentation reviewed by team lead",
+    "End-to-end CI/CD test successful",
+    "All metrics meet production ready criteria"
+  ]
+}
