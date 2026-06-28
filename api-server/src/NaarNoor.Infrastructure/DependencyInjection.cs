@@ -53,11 +53,15 @@ public static class DependencyInjection
         services.AddHttpClient<ISupabaseStorageService, SupabaseStorageService>();
         services.AddHttpClient<ISupabaseRealtimeService, SupabaseRealtimeService>();
 
+        var serviceRoleKey = Environment.GetEnvironmentVariable("SUPABASE_SERVICE_ROLE_KEY")
+            ?? configuration["Supabase:ServiceRoleKey"]
+            ?? "";
+
         services.AddSingleton(new SupabaseConfig 
         { 
             Url = supabaseUrl, 
             AnonKey = supabaseAnonKey,
-            ServiceRoleKey = configuration["Supabase:ServiceRoleKey"] ?? ""
+            ServiceRoleKey = serviceRoleKey
         });
 
         return services;
@@ -65,21 +69,26 @@ public static class DependencyInjection
 
     private static string BuildConnectionString(IConfiguration configuration)
     {
-        // Try environment variable first
+        // 1. Replit built-in PostgreSQL — build from individual PG* env vars (always reliable)
+        var pgHost = Environment.GetEnvironmentVariable("PGHOST");
+        var pgPort = Environment.GetEnvironmentVariable("PGPORT") ?? "5432";
+        var pgUser = Environment.GetEnvironmentVariable("PGUSER");
+        var pgPassword = Environment.GetEnvironmentVariable("PGPASSWORD");
+        var pgDatabase = Environment.GetEnvironmentVariable("PGDATABASE");
+
+        if (!string.IsNullOrWhiteSpace(pgHost) && !string.IsNullOrWhiteSpace(pgUser))
+            return $"Host={pgHost};Port={pgPort};Database={pgDatabase};Username={pgUser};Password={pgPassword};SSL Mode=Disable;";
+
+        // 2. Explicit full connection string override
         var envConnectionString = Environment.GetEnvironmentVariable("POSTGRESQL_CONNECTION_STRING");
         if (!string.IsNullOrWhiteSpace(envConnectionString))
             return envConnectionString;
 
-        // Try Supabase connection string
-        var supabaseConnectionString = configuration["ConnectionStrings:SupabasePostgresql"];
-        if (!string.IsNullOrWhiteSpace(supabaseConnectionString))
-            return supabaseConnectionString;
-
-        // Fall back to direct configuration
+        // 3. Fall back to appsettings (for external dev environments with real values)
         var connectionString = configuration.GetConnectionString("DefaultConnection");
-        if (string.IsNullOrWhiteSpace(connectionString))
+        if (string.IsNullOrWhiteSpace(connectionString) || connectionString.Contains("YOUR_PASSWORD_HERE"))
             throw new InvalidOperationException(
-                "Database connection string not found. Set POSTGRESQL_CONNECTION_STRING environment variable or configure ConnectionStrings:SupabasePostgresql in appsettings.");
+                "Database connection string not found. Set PGHOST/PGUSER/PGPASSWORD/PGDATABASE environment variables.");
 
         return connectionString;
     }
