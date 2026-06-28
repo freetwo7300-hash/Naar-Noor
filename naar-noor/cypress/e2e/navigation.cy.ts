@@ -2,7 +2,7 @@
 
 describe('Navigation E2E Tests', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200');
+    cy.visit('/');
   });
 
   describe('Main Navigation', () => {

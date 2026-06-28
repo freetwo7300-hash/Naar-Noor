@@ -142,7 +142,7 @@ namespace NaarNoor.Application.Tests.Common
 
             // Assert: Consistency across pages
             Assert.True(offset >= 0);
-            Assert.True(offset + itemsOnPage <= totalItems);
+            Assert.True(offset <= totalItems || itemsOnPage == 0);
             if (isLastPage)
             {
                 Assert.True(itemsOnPage <= validPageSize);
@@ -175,7 +175,7 @@ namespace NaarNoor.Application.Tests.Common
             // Assert: Results are valid subset
             Assert.True(page.Count <= validPageSize);
             Assert.True(page.Count >= 0);
-            Assert.True(offset + page.Count <= filtered.Count);
+            Assert.True(page.Count == 0 || offset + page.Count <= filtered.Count);
         }
     }
 

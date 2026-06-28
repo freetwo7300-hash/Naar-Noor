@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Naar &amp; Noor API</title>
+  <meta name="description" content="About the Naar &amp; Noor restaurant platform and API. Built with ASP.NET Core 8 and Angular 18.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      Naar <span class="logo-dot">&amp;</span> Noor
+      <span class="logo-badge">API</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M3 5h14M3 10h14M3 15h14"/>
+      </svg>
+    </button>
+    <nav>
+      <a href="/"         class="nav-link" data-page="/">Overview</a>
+      <a href="/about"    class="nav-link active" data-page="/about">About</a>
+      <a href="/status"   class="nav-link" data-page="/status">Status</a>
+      <a href="/api/docs" class="nav-link nav-link--cta">API Docs ↗</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ───────────────────────────────────── -->
+<section class="hero">
+  <div class="container fade-up" style="max-width:720px;">
+    <span class="hero-eyebrow">About the Platform</span>
+    <h1 class="hero-title">Built for the<br><span>Himalayas</span></h1>
+    <p class="hero-subtitle">
+      Naar &amp; Noor is an authentic Himalayan restaurant in London.
+      This API powers every digital touchpoint — from online reservations to the live menu.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Restaurant story ───────────────────────── -->
+<section style="background:var(--bg-section);padding:5rem 1.5rem;">
+  <div class="container container--narrow">
+    <div class="grid-2" style="gap:3rem;align-items:center;">
+      <div data-reveal>
+        <span class="section-label">The Restaurant</span>
+        <h2 style="margin-bottom:1rem;">Fire is the Soul of Every Dish</h2>
+        <p style="margin-bottom:1rem;">
+          Naar &amp; Noor brings the high-altitude flavours of Nepal, Tibet and the greater Himalayan region
+          to the heart of London. Our chefs — each trained in mountain kitchens across South Asia — craft
+          dishes that honour centuries-old traditions while embracing the finest seasonal ingredients.
+        </p>
+        <p style="margin-bottom:1rem;">
+          From hand-formed momos to flame-kissed sekuwa, from warming dal bhat to delicate Newari sweets,
+          every plate tells a story of place and heritage.
+        </p>
+        <p>
+          This API is the backbone of our digital platform, letting guests explore our menu, book tables,
+          place orders and share their experiences — seamlessly.
+        </p>
+      </div>
+      <div data-reveal data-delay="100">
+        <div class="card" style="padding:2rem;display:flex;flex-direction:column;gap:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border-subtle);">
+            <span style="font-size:0.8rem;font-weight:600;">Location</span>
+            <span style="font-size:0.8rem;color:var(--text-secondary);">London, UK</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border-subtle);">
+            <span style="font-size:0.8rem;font-weight:600;">Cuisine</span>
+            <span style="font-size:0.8rem;color:var(--text-secondary);">Himalayan · Nepali · Tibetan</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border-subtle);">
+            <span style="font-size:0.8rem;font-weight:600;">Menu Items</span>
+            <span style="font-size:0.8rem;color:var(--primary);">GET /api/menu</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border-subtle);">
+            <span style="font-size:0.8rem;font-weight:600;">Chef Profiles</span>
+            <span style="font-size:0.8rem;color:var(--primary);">GET /api/chefs</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:0.8rem;font-weight:600;">Guest Reviews</span>
+            <span style="font-size:0.8rem;color:var(--primary);">GET /api/reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Architecture ────────────────────────────── -->
+<section style="padding:5rem 1.5rem;">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;" data-reveal>
+      <span class="section-label">Architecture</span>
+      <h2>How It's Built</h2>
+      <p style="max-width:480px;margin:0.5rem auto 0;">A clean, modular architecture built for maintainability and performance.</p>
+    </div>
+    <div class="grid-3" style="gap:1.25rem;">
+      <div class="card" data-reveal data-delay="50">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">🏗️</div>
+        <h4 style="margin-bottom:0.5rem;">Clean Architecture</h4>
+        <p>Four-layer separation: Domain, Application (CQRS + MediatR), Infrastructure (EF Core + PostgreSQL), and API (ASP.NET Core 8).</p>
+      </div>
+      <div class="card" data-reveal data-delay="100">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">⚡</div>
+        <h4 style="margin-bottom:0.5rem;">CQRS Pattern</h4>
+        <p>Commands and Queries are cleanly separated. Every API action dispatches a typed MediatR request with full validation via FluentValidation.</p>
+      </div>
+      <div class="card" data-reveal data-delay="150">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">🛡️</div>
+        <h4 style="margin-bottom:0.5rem;">Security First</h4>
+        <p>IP-based rate limiting (AspNetCoreRateLimit), security response headers, CORS policy enforcement, and structured error handling.</p>
+      </div>
+      <div class="card" data-reveal data-delay="200">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">🗄️</div>
+        <h4 style="margin-bottom:0.5rem;">PostgreSQL</h4>
+        <p>Persistent data storage via Entity Framework Core with code-first migrations. Automatic database seeding on startup.</p>
+      </div>
+      <div class="card" data-reveal data-delay="250">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">📊</div>
+        <h4 style="margin-bottom:0.5rem;">Observability</h4>
+        <p>Structured logging via Serilog (compact JSON format). Health check endpoint at <code>/health</code> for uptime monitoring.</p>
+      </div>
+      <div class="card" data-reveal data-delay="300">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">📖</div>
+        <h4 style="margin-bottom:0.5rem;">OpenAPI / Swagger</h4>
+        <p>Full API documentation generated automatically at <a href="/api/docs">/api/docs</a>. Try every endpoint directly in the browser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stack ───────────────────────────────────── -->
+<section style="background:var(--bg-section);padding:5rem 1.5rem;">
+  <div class="container container--narrow">
+    <div style="text-align:center;margin-bottom:3rem;" data-reveal>
+      <span class="section-label">Technology Stack</span>
+      <h2>What Powers the Platform</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;" data-reveal>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-radius:var(--radius-md) var(--radius-md) 0 0;overflow:hidden;">
+        <div style="padding:1rem 1.25rem;background:var(--bg-card-2);font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);border-right:1px solid var(--border-subtle);">Layer</div>
+        <div style="padding:1rem 1.25rem;background:var(--bg-card-2);font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);">Technology</div>
+      </div>
+
+      <!-- rows -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-top:none;">
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;border-right:1px solid var(--border-subtle);">Backend API</div>
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;color:var(--text-secondary);">ASP.NET Core 8</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-top:none;background:rgba(255,255,255,0.015);">
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;border-right:1px solid var(--border-subtle);">Frontend</div>
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;color:var(--text-secondary);">Angular 18 + Tailwind CSS</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-top:none;">
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;border-right:1px solid var(--border-subtle);">Database</div>
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;color:var(--text-secondary);">PostgreSQL + EF Core 8</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-top:none;background:rgba(255,255,255,0.015);">
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;border-right:1px solid var(--border-subtle);">Application Layer</div>
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;color:var(--text-secondary);">MediatR · CQRS · FluentValidation</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-top:none;">
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;border-right:1px solid var(--border-subtle);">Logging</div>
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;color:var(--text-secondary);">Serilog (Compact JSON)</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-top:none;background:rgba(255,255,255,0.015);">
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;border-right:1px solid var(--border-subtle);">Rate Limiting</div>
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;color:var(--text-secondary);">AspNetCoreRateLimit (IP-based)</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-subtle);border-top:none;border-radius:0 0 var(--radius-md) var(--radius-md);">
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;font-weight:500;border-right:1px solid var(--border-subtle);">Docs</div>
+        <div style="padding:1rem 1.25rem;font-size:0.85rem;color:var(--text-secondary);">Swagger UI · OpenAPI 3.0</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────── -->
+<section style="padding:5rem 1.5rem;text-align:center;">
+  <div class="container container--narrow" data-reveal>
+    <span class="section-label">Explore</span>
+    <h2 style="margin-bottom:0.75rem;">Ready to Dive In?</h2>
+    <p style="margin-bottom:2rem;">Open Swagger UI for the full interactive API reference with request/response schemas.</p>
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+      <a href="/api/docs" class="btn btn-primary">Open API Docs</a>
+      <a href="/status"   class="btn btn-outline">System Status</a>
+      <a href="/"         class="btn btn-outline">← Overview</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-text">© 2025 Naar &amp; Noor · Himalayan Restaurant Platform</span>
+    <div class="footer-links">
+      <a href="/">Overview</a>
+      <a href="/about">About</a>
+      <a href="/status">Status</a>
+      <a href="/api/docs">API Docs</a>
+      <a href="/health">Health</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

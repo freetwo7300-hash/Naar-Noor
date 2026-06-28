@@ -3,7 +3,7 @@ import { LoginPage } from '../support/page-objects/LoginPage';
 
 describe('Authentication E2E Tests', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200');
+    cy.visit('/');
   });
 
   describe('Login Workflow', () => {
@@ -78,7 +78,7 @@ describe('Authentication E2E Tests', () => {
       LoginPage.visit();
       LoginPage.login('demo@example.com', 'password123');
 
-      cy.visit('http://localhost:4200/menu');
+      cy.visit('/menu');
 
       LoginPage.verifyLoggedIn();
     });

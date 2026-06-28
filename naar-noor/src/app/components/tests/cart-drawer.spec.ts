@@ -1,7 +1,7 @@
-/// <reference types="jasmine" />
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CartDrawerComponent } from '../cart-drawer/cart-drawer.component';
 import { CartService } from '../../services/cart.service';
 import { ApiService } from '../../services/api.service';
@@ -34,6 +34,7 @@ describe('CartDrawerComponent - Component State Management (Property 15)', () =>
         CartDrawerComponent,
         HttpClientTestingModule,
         ReactiveFormsModule,
+        NoopAnimationsModule,
       ],
       providers: [CartService, ApiService, ToastService],
     }).compileComponents();

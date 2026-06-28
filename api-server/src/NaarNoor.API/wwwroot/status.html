@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Status — Naar &amp; Noor API</title>
+  <meta name="description" content="Live system status for the Naar &amp; Noor API platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      Naar <span class="logo-dot">&amp;</span> Noor
+      <span class="logo-badge">API</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M3 5h14M3 10h14M3 15h14"/>
+      </svg>
+    </button>
+    <nav>
+      <a href="/"         class="nav-link" data-page="/">Overview</a>
+      <a href="/about"    class="nav-link" data-page="/about">About</a>
+      <a href="/status"   class="nav-link active" data-page="/status">Status</a>
+      <a href="/api/docs" class="nav-link nav-link--cta">API Docs ↗</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero / Overall status ──────────────────── -->
+<section class="hero" style="padding:4rem 1.5rem 3rem;">
+  <div class="container fade-up" style="max-width:660px;">
+    <span class="hero-eyebrow">Live Status</span>
+    <h1 class="hero-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:1rem;">
+      System Health
+    </h1>
+
+    <!-- Overall status banner -->
+    <div class="card" style="padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="status-dot checking" id="overall-dot"></span>
+        <div>
+          <strong style="font-size:1rem;" id="overall-text">Checking services…</strong>
+          <p style="margin:0;font-size:0.75rem;">Last checked: <span id="check-time">—</span></p>
+        </div>
+      </div>
+      <span class="badge badge-checking" id="overall-badge">Checking…</span>
+    </div>
+
+    <p style="font-size:0.82rem;color:var(--text-dim);">
+      All checks run live in your browser against the API server. Results update automatically on page load.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Service cards ──────────────────────────── -->
+<section style="background:var(--bg-section);padding:4rem 1.5rem;">
+  <div class="container container--narrow">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;" data-reveal>
+      <div>
+        <span class="section-label">Services</span>
+        <h2>Endpoint Status</h2>
+      </div>
+      <button class="btn btn-outline" onclick="location.reload()" style="font-size:0.75rem;padding:0.45rem 1rem;">
+        ↺ Refresh
+      </button>
+    </div>
+
+    <!-- Cards injected by JS -->
+    <div class="grid-2" id="status-grid" style="gap:1rem;"></div>
+  </div>
+</section>
+
+<!-- ── Latency legend ─────────────────────────── -->
+<section style="padding:3rem 1.5rem;">
+  <div class="container container--narrow">
+    <div class="card card--glass" data-reveal>
+      <h4 style="margin-bottom:1.25rem;">Latency Legend</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:1.5rem;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#4ade80;"></span>
+          <span style="font-size:0.8rem;"><strong style="color:#4ade80;">&lt; 200 ms</strong> — Excellent</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#facc15;"></span>
+          <span style="font-size:0.8rem;"><strong style="color:#facc15;">200–600 ms</strong> — Acceptable</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f87171;"></span>
+          <span style="font-size:0.8rem;"><strong style="color:#f87171;">&gt; 600 ms</strong> — Degraded</span>
+        </div>
+      </div>
+      <p style="margin-top:1.25rem;font-size:0.78rem;">
+        Status dots reflect HTTP response codes: <code>2xx</code> = Online, <code>4xx/5xx</code> or timeout = Degraded.
+        The <code>/health</code> endpoint returns ASP.NET Core health check results.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-text">© 2025 Naar &amp; Noor · Himalayan Restaurant Platform</span>
+    <div class="footer-links">
+      <a href="/">Overview</a>
+      <a href="/about">About</a>
+      <a href="/status">Status</a>
+      <a href="/api/docs">API Docs</a>
+      <a href="/health">Health</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+  // Update "last checked" timestamp when page loads
+  document.getElementById('check-time').textContent = new Date().toLocaleTimeString();
+</script>
+</body>
+</html>

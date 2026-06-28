@@ -4,7 +4,7 @@ import { OrderPage } from '../support/page-objects/OrderPage';
 
 describe('Order Workflow E2E Tests', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200');
+    cy.visit('/');
   });
 
   describe('Order Creation', () => {

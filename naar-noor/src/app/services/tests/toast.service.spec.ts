@@ -180,14 +180,15 @@ describe('ToastService - State Consistency (Property 14)', () => {
   /**
    * Test 15: Auto-dismiss clears toast after timeout
    */
-  it('should auto-dismiss toast after timeout', (done) => {
-    service.success('Temporary message'); // 7000ms timeout
+  it('should auto-dismiss toast after timeout', () => {
+    jest.useFakeTimers();
 
+    service.success('Temporary message'); // 7000ms timeout
     expect(service.toasts().length).toBe(1);
 
-    setTimeout(() => {
-      expect(service.toasts().length).toBe(0);
-      done();
-    }, 7100);
+    jest.advanceTimersByTime(7100);
+    expect(service.toasts().length).toBe(0);
+
+    jest.useRealTimers();
   });
 });

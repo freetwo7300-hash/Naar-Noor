@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "ng serve --port 5000 --host 0.0.0.0",
+    "dev": "npx ng serve --port 5000 --host 0.0.0.0",
     "build": "npx ng build --configuration production",
-    "test": "karma start karma.conf.js",
-    "test:ci": "karma start karma.conf.js --watch=false --single-run --browsers=ChromeHeadlessCI",
-    "coverage:check": "npm run test:ci"
+    "test": "jest --config jest.config.js",
+    "test:ci": "jest --config jest.config.js --forceExit",
+    "coverage:check": "jest --config jest.config.js --coverage --forceExit"
   },
   "dependencies": {
     "@angular/animations": "^18.2.14",
@@ -29,11 +29,15 @@
     "@angular/compiler-cli": "^18.2.14",
     "@types/cypress": "^0.1.6",
     "@types/jasmine": "^6.0.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.0.0",
     "autoprefixer": "^10.4.27",
     "cypress": "^15.18.0",
     "husky": "^9.1.7",
     "jasmine-core": "^6.3.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "jest-preset-angular": "^17.0.0",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
     "karma-coverage": "^2.2.1",
@@ -42,6 +46,7 @@
     "karma-typescript": "^5.5.4",
     "postcss": "^8.5.8",
     "tailwindcss": "3.4.19",
+    "ts-jest": "^29.4.11",
     "typescript": "~5.5.4"
   }
 }

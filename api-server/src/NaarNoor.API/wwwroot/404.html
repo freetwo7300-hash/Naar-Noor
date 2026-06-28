@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found · Naar &amp; Noor API</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .error-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .error-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(198,90,30,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .error-code {
+      font-family: 'Forum', serif;
+      font-size: clamp(8rem, 20vw, 14rem);
+      font-weight: 400;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(198,90,30,0.25);
+      text-stroke: 1px rgba(198,90,30,0.25);
+      letter-spacing: -0.04em;
+      user-select: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      white-space: nowrap;
+    }
+    .error-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body class="error-page">
+
+<!-- ── Header ─────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      Naar <span class="logo-dot">&amp;</span> Noor
+      <span class="logo-badge">API</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M3 5h14M3 10h14M3 15h14"/>
+      </svg>
+    </button>
+    <nav>
+      <a href="/"         class="nav-link" data-page="/">Overview</a>
+      <a href="/about"    class="nav-link" data-page="/about">About</a>
+      <a href="/status"   class="nav-link" data-page="/status">Status</a>
+      <a href="/api/docs" class="nav-link nav-link--cta">API Docs ↗</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── 404 Content ────────────────────────────── -->
+<main class="error-main">
+  <span class="error-code" aria-hidden="true">404</span>
+  <div class="error-content fade-up">
+    <span class="section-label" style="justify-content:center;display:flex;">Lost in the Himalayas</span>
+    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:0.75rem;">Page Not Found</h1>
+    <p style="margin-bottom:2rem;">
+      The path <code id="error-path"></code> doesn't exist on this server.
+      You may have mistyped the URL or followed an outdated link.
+    </p>
+
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;">
+      <a href="/"         class="btn btn-primary">← API Overview</a>
+      <a href="/api/docs" class="btn btn-outline">API Docs</a>
+      <a href="/status"   class="btn btn-outline">System Status</a>
+    </div>
+
+    <!-- Quick links -->
+    <div class="card" style="text-align:left;padding:1.5rem;">
+      <p style="font-size:0.8rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);">Did you mean one of these?</p>
+      <div style="display:flex;flex-direction:column;gap:0.4rem;">
+        <a href="/"           style="font-size:0.8rem;color:var(--text-secondary);">/ — API Overview</a>
+        <a href="/about"      style="font-size:0.8rem;color:var(--text-secondary);">/about — About the Platform</a>
+        <a href="/status"     style="font-size:0.8rem;color:var(--text-secondary);">/status — System Status</a>
+        <a href="/api/docs"   style="font-size:0.8rem;color:var(--text-secondary);">/api/docs — Swagger UI</a>
+        <a href="/api/menu"   style="font-size:0.8rem;color:var(--text-secondary);">/api/menu — Menu Endpoint</a>
+        <a href="/api/chefs"  style="font-size:0.8rem;color:var(--text-secondary);">/api/chefs — Chefs Endpoint</a>
+        <a href="/health"     style="font-size:0.8rem;color:var(--text-secondary);">/health — Health Check</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── Footer ─────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-text">© 2025 Naar &amp; Noor · Himalayan Restaurant Platform</span>
+    <div class="footer-links">
+      <a href="/">Overview</a>
+      <a href="/about">About</a>
+      <a href="/status">Status</a>
+      <a href="/api/docs">API Docs</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+  // Show the attempted path
+  const pathEl = document.getElementById('error-path');
+  if (pathEl) pathEl.textContent = location.pathname;
+</script>
+</body>
+</html>

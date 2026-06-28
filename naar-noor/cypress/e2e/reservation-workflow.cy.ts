@@ -3,7 +3,7 @@ import { ReservationPage } from '../support/page-objects/ReservationPage';
 
 describe('Reservation Workflow E2E Tests', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200');
+    cy.visit('/');
   });
 
   it('should display home page', () => {
@@ -16,19 +16,19 @@ describe('Reservation Workflow E2E Tests', () => {
   });
 
   it('should display available chefs', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-list"]').should('exist');
     cy.get('[data-cy="chef-card"]').should('have.length.greaterThan', 0);
   });
 
   it('should select a chef for reservation', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-card"]').first().click();
     cy.get('[data-cy="chef-details"]').should('exist');
   });
 
   it('should fill reservation form with valid data', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-card"]').first().click();
     
     cy.get('input[name="date"]').type('2026-07-15');
@@ -40,7 +40,7 @@ describe('Reservation Workflow E2E Tests', () => {
   });
 
   it('should submit reservation', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-card"]').first().click();
     
     cy.get('input[name="date"]').type('2026-07-15');
@@ -53,7 +53,7 @@ describe('Reservation Workflow E2E Tests', () => {
   });
 
   it('should display reservation number', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-card"]').first().click();
     
     cy.get('input[name="date"]').type('2026-07-15');
@@ -66,7 +66,7 @@ describe('Reservation Workflow E2E Tests', () => {
   });
 
   it('should validate required fields', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-card"]').first().click();
     
     cy.get('button[type="submit"]').click();
@@ -75,7 +75,7 @@ describe('Reservation Workflow E2E Tests', () => {
   });
 
   it('should reject past dates', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-card"]').first().click();
     
     cy.get('input[name="date"]').type('2024-01-01');
@@ -84,7 +84,7 @@ describe('Reservation Workflow E2E Tests', () => {
   });
 
   it('should validate guest count range', () => {
-    cy.visit('http://localhost:4200/reservations');
+    cy.visit('/reservations');
     cy.get('[data-cy="chef-card"]').first().click();
     
     cy.get('input[name="guestCount"]').type('0');

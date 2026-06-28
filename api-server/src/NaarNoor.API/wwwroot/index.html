@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naar &amp; Noor API — Overview</title>
+  <meta name="description" content="Naar &amp; Noor Restaurant API — menu, chefs, reservations, orders, reviews and contact management.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      Naar <span class="logo-dot">&amp;</span> Noor
+      <span class="logo-badge">API</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M3 5h14M3 10h14M3 15h14"/>
+      </svg>
+    </button>
+    <nav>
+      <a href="/"         class="nav-link active" data-page="/">Overview</a>
+      <a href="/about"    class="nav-link" data-page="/about">About</a>
+      <a href="/status"   class="nav-link" data-page="/status">Status</a>
+      <a href="/api/docs" class="nav-link nav-link--cta">API Docs ↗</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ───────────────────────────────────── -->
+<section class="hero">
+  <div class="container fade-up">
+    <span class="hero-eyebrow">
+      <span class="status-dot"></span>
+      REST API · v1 · ASP.NET Core 8
+    </span>
+    <h1 class="hero-title">Naar <span>&amp;</span> Noor<br>Restaurant API</h1>
+    <p class="hero-subtitle">
+      A clean, high-performance REST API powering the Naar &amp; Noor Himalayan restaurant platform.
+      Menu management, chef profiles, reservations, orders, reviews and more.
+    </p>
+    <div class="hero-actions">
+      <a href="/api/docs" class="btn btn-primary">Explore API Docs</a>
+      <a href="/status"   class="btn btn-outline">System Status</a>
+      <a href="/about"    class="btn btn-outline">About</a>
+    </div>
+    <div class="hero-meta">
+      <span class="hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        RESTful JSON
+      </span>
+      <span class="hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Rate Limited
+      </span>
+      <span class="hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Health Monitored
+      </span>
+      <span class="hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        CORS Secured
+      </span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Endpoints ──────────────────────────────── -->
+<section style="background:var(--bg-section); padding:5rem 1.5rem;">
+  <div class="container">
+    <div data-reveal data-delay="0" style="margin-bottom:3rem;">
+      <span class="section-label">Endpoints</span>
+      <h2>Available Resources</h2>
+      <p style="margin-top:0.5rem;max-width:520px;">All endpoints return JSON and are accessible under the <code>/api</code> prefix. Interactive documentation is available via Swagger UI.</p>
+    </div>
+
+    <div class="grid-2" style="gap:1.5rem;">
+
+      <!-- Menu -->
+      <div class="card fade-up delay-1" data-reveal data-delay="50">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <h4>🍽&nbsp; Menu</h4>
+          <span class="badge badge-get">GET</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+          <div class="endpoint-row">
+            <span class="method method-get">GET</span>
+            <span class="endpoint-path">/api/menu</span>
+            <span class="endpoint-desc">All items</span>
+          </div>
+          <div class="endpoint-row">
+            <span class="method method-get">GET</span>
+            <span class="endpoint-path">/api/menu?category=…</span>
+            <span class="endpoint-desc">By category</span>
+          </div>
+        </div>
+        <p>Browse the full menu or filter by category: Starters, Mains, Dal &amp; Curry, Breads, Desserts, Drinks, Specials.</p>
+        <div style="margin-top:1rem;">
+          <a href="/api/menu" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;">Try it →</a>
+        </div>
+      </div>
+
+      <!-- Chefs -->
+      <div class="card fade-up delay-2" data-reveal data-delay="100">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <h4>👨‍🍳&nbsp; Chefs</h4>
+          <span class="badge badge-get">GET</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+          <div class="endpoint-row">
+            <span class="method method-get">GET</span>
+            <span class="endpoint-path">/api/chefs</span>
+            <span class="endpoint-desc">All chefs</span>
+          </div>
+        </div>
+        <p>Returns all active chef profiles with name, title, bio, specialty and image URL, ordered by seniority.</p>
+        <div style="margin-top:1rem;">
+          <a href="/api/chefs" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;">Try it →</a>
+        </div>
+      </div>
+
+      <!-- Reservations -->
+      <div class="card fade-up delay-1" data-reveal data-delay="150">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <h4>📅&nbsp; Reservations</h4>
+          <span class="badge badge-post">POST</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+          <div class="endpoint-row">
+            <span class="method method-post">POST</span>
+            <span class="endpoint-path">/api/reservations</span>
+            <span class="endpoint-desc">Create booking</span>
+          </div>
+        </div>
+        <p>Submit a table reservation with guest name, email, date, time and party size. Returns confirmation ID.</p>
+        <div style="margin-top:1rem;">
+          <a href="/api/docs#/Reservations" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;">View schema →</a>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div class="card fade-up delay-2" data-reveal data-delay="200">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <h4>🛒&nbsp; Orders</h4>
+          <span class="badge badge-post">POST</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+          <div class="endpoint-row">
+            <span class="method method-post">POST</span>
+            <span class="endpoint-path">/api/orders</span>
+            <span class="endpoint-desc">Place order</span>
+          </div>
+        </div>
+        <p>Place a food order with customer details and line items. Validates menu item availability and calculates totals.</p>
+        <div style="margin-top:1rem;">
+          <a href="/api/docs#/Orders" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;">View schema →</a>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div class="card fade-up delay-1" data-reveal data-delay="250">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <h4>⭐&nbsp; Reviews</h4>
+          <span class="badge badge-get">GET</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+          <div class="endpoint-row">
+            <span class="method method-get">GET</span>
+            <span class="endpoint-path">/api/reviews</span>
+            <span class="endpoint-desc">Approved reviews</span>
+          </div>
+        </div>
+        <p>Retrieves all guest-approved reviews with star rating, comment, customer name, and source platform.</p>
+        <div style="margin-top:1rem;">
+          <a href="/api/reviews" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;">Try it →</a>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="card fade-up delay-2" data-reveal data-delay="300">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <h4>✉️&nbsp; Contact</h4>
+          <span class="badge badge-post">POST</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+          <div class="endpoint-row">
+            <span class="method method-post">POST</span>
+            <span class="endpoint-path">/api/contact</span>
+            <span class="endpoint-desc">Send message</span>
+          </div>
+        </div>
+        <p>Submit a contact enquiry. Validated for name, email and message content. Stored for staff follow-up.</p>
+        <div style="margin-top:1rem;">
+          <a href="/api/docs#/Contact" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;">View schema →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Quick Links ─────────────────────────────── -->
+<section style="padding:5rem 1.5rem;">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;" data-reveal>
+      <span class="section-label">Resources</span>
+      <h2>Quick Links</h2>
+    </div>
+    <div class="grid-3">
+      <a href="/api/docs" class="card" style="display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;" data-reveal data-delay="50">
+        <div style="font-size:1.8rem;">📖</div>
+        <h4>Swagger UI</h4>
+        <p>Interactive API explorer. Try any endpoint directly from your browser with full request/response documentation.</p>
+        <span style="font-size:0.75rem;color:var(--primary);margin-top:auto;">Open Swagger →</span>
+      </a>
+      <a href="/status" class="card" style="display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;" data-reveal data-delay="100">
+        <div style="font-size:1.8rem;">📡</div>
+        <h4>System Status</h4>
+        <p>Live health checks for all API services and endpoints. Latency monitoring and status indicators.</p>
+        <span style="font-size:0.75rem;color:var(--primary);margin-top:auto;">Check Status →</span>
+      </a>
+      <a href="/about" class="card" style="display:flex;flex-direction:column;gap:0.75rem;text-decoration:none;" data-reveal data-delay="150">
+        <div style="font-size:1.8rem;">🏔️</div>
+        <h4>About</h4>
+        <p>Learn about the Naar &amp; Noor platform, the technology stack, and the architecture behind this API.</p>
+        <span style="font-size:0.75rem;color:var(--primary);margin-top:auto;">Read More →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Base URL notice ─────────────────────────── -->
+<section style="background:var(--bg-section);padding:3rem 1.5rem;">
+  <div class="container container--narrow" data-reveal>
+    <div class="card card--glass" style="padding:2rem;">
+      <span class="section-label">Base URL</span>
+      <h3 style="margin-bottom:0.75rem;">Getting Started</h3>
+      <p style="margin-bottom:1.25rem;">All API requests are made to the base URL below. Replace <code>:port</code> with <code>8080</code> in local development.</p>
+      <pre><code>http://localhost:8080/api</code></pre>
+      <p style="margin-top:1rem;">Example request:</p>
+      <pre><code>curl http://localhost:8080/api/menu</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-text">© 2025 Naar &amp; Noor · Himalayan Restaurant Platform</span>
+    <div class="footer-links">
+      <a href="/">Overview</a>
+      <a href="/about">About</a>
+      <a href="/status">Status</a>
+      <a href="/api/docs">API Docs</a>
+      <a href="/health">Health</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

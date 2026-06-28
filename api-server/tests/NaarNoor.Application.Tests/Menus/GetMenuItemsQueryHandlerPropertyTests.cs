@@ -41,7 +41,7 @@ public class GetMenuItemsQueryHandlerPropertyTests : ApplicationLayerTestBase
     public Property QueryHandlerFiltersMenuItemsByCategory(string? categoryFilter)
     {
         return Prop.ForAll(
-            Arb.From(GenerateValidMenuItems(itemCount: 50)),
+            Gen.Constant(GenerateValidMenuItems(50).ToList()).ToArbitrary(),
             menuItems =>
             {
                 // Arrange
@@ -143,7 +143,7 @@ public class GetMenuItemsQueryHandlerPropertyTests : ApplicationLayerTestBase
     public Property QueryTransformsAllMenuItemFieldsCorrectly()
     {
         return Prop.ForAll(
-            Arb.From(GenerateValidMenuItems(count: 30)),
+            Gen.Constant(GenerateValidMenuItems(30).ToList()).ToArbitrary(),
             menuItems =>
             {
                 // Arrange
@@ -191,7 +191,7 @@ public class GetMenuItemsQueryHandlerPropertyTests : ApplicationLayerTestBase
     public Property QueryCategoryFilterIsSpecificAndAccurate()
     {
         return Prop.ForAll(
-            Arb.From(GenerateValidMenuItems(count: 40)),
+            Gen.Constant(GenerateValidMenuItems(40).ToList()).ToArbitrary(),
             menuItems =>
             {
                 var testData = menuItems.ToList();
@@ -247,11 +247,11 @@ public class GetMenuItemsQueryHandlerPropertyTests : ApplicationLayerTestBase
         if (string.IsNullOrWhiteSpace(invalidCategory) ||
             Enum.TryParse<MenuCategory>(invalidCategory, true, out _))
         {
-            return Prop.Trivial(true.ToProperty());
+            return true.ToProperty();
         }
 
         return Prop.ForAll(
-            Arb.From(GenerateValidMenuItems(count: 20)),
+            Gen.Constant(GenerateValidMenuItems(20).ToList()).ToArbitrary(),
             menuItems =>
             {
                 // Arrange
@@ -288,18 +288,19 @@ public class GetMenuItemsQueryHandlerPropertyTests : ApplicationLayerTestBase
         {
             var category = categories[i % categories.Length];
 
-            var menuItem = MenuItem.Create(
-                name: $"MenuItem {i}",
-                description: $"Description for item {i}",
-                price: (decimal)(10 + (i % 50)),
-                category: category,
-                isVegetarian: i % 3 == 0,
-                isVegan: i % 5 == 0,
-                isGlutenFree: i % 4 == 0,
-                isAvailable: true,
-                imageUrl: $"https://example.com/image{i}.jpg",
-                sortOrder: i
-            );
+            var menuItem = new MenuItem
+            {
+                Name        = $"MenuItem {i}",
+                Description = $"Description for item {i}",
+                Price       = (decimal)(10 + (i % 50)),
+                Category    = category,
+                IsVegetarian = i % 3 == 0,
+                IsVegan      = i % 5 == 0,
+                IsGlutenFree = i % 4 == 0,
+                IsAvailable  = true,
+                ImageUrl     = $"https://example.com/image{i}.jpg",
+                SortOrder    = i
+            };
 
             yield return menuItem;
         }
@@ -310,7 +311,7 @@ public class GetMenuItemsQueryHandlerPropertyTests : ApplicationLayerTestBase
         var unitOfWorkMock = CreateRepositoryMock<IUnitOfWork>();
 
         // Create a queryable mock that returns only available items
-        var queryable = menuItems.Where(m => m.IsAvailable).AsQueryable();
+        var queryable = menuItems.Where(m => m.IsAvailable).AsAsyncTestQueryable();
 
         var repositoryMock = CreateRepositoryMock<IRepository<MenuItem>>();
         repositoryMock

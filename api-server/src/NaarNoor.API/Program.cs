@@ -60,20 +60,47 @@ try
     // 3. Rate Limiting - Phase 2.2
     app.UseIpRateLimiting();
 
-    // 4. Swagger UI
+    // 4. Static files (wwwroot) — serve CSS, JS and other assets
+    app.UseStaticFiles();
+
+    // 5. Swagger UI
     app.UseSwaggerMiddleware();
 
-    // 5. CORS - Phase 2.4
+    // 6. CORS - Phase 2.4
     app.UseCorsMiddleware();
 
-    // 6. Authorization
+    // 7. Authorization
     app.UseAuthorizationMiddleware();
 
-    // 7. Map Controllers
+    // 8. Map Controllers
     app.MapControllersMiddleware();
 
-    // 8. Map Health Checks
+    // 9. Map Health Checks
     app.MapHealthChecks("/health");
+
+    // 10. Explicit HTML page routes
+    var webRootPath = app.Environment.WebRootPath ?? Path.Combine(AppContext.BaseDirectory, "wwwroot");
+
+    static RequestDelegate ServePage(string filePath) =>
+        async ctx =>
+        {
+            ctx.Response.ContentType = "text/html; charset=utf-8";
+            await ctx.Response.SendFileAsync(filePath);
+        };
+
+    app.MapGet("/",       ServePage(Path.Combine(webRootPath, "index.html")));
+    app.MapGet("/about",  ServePage(Path.Combine(webRootPath, "about.html")));
+    app.MapGet("/status", ServePage(Path.Combine(webRootPath, "status.html")));
+
+    // 11. Custom 404 fallback for all other unknown paths
+    app.MapFallback(async context =>
+    {
+        context.Response.StatusCode = 404;
+        context.Response.ContentType = "text/html; charset=utf-8";
+        var notFoundPage = Path.Combine(webRootPath, "404.html");
+        if (File.Exists(notFoundPage))
+            await context.Response.SendFileAsync(notFoundPage);
+    });
 
     // 9. Seed Database
     await app.SeedDatabaseMiddlewareAsync();
