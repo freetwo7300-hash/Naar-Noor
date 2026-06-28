@@ -43,6 +43,7 @@ public static class DependencyInjection
             };
         });
         services.AddInMemoryRateLimiting();
+        services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
         // Supabase Services - REST API based implementation
         var supabaseUrl = configuration["Supabase:Url"] ?? throw new InvalidOperationException("Supabase URL not configured");

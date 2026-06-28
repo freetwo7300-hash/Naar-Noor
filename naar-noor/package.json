@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "ng serve --port 5000 --host 0.0.0.0",
+    "dev": "npx ng serve --port 5000 --host 0.0.0.0",
     "build": "npx ng build --configuration production",
     "test": "karma start karma.conf.js",
     "test:ci": "karma start karma.conf.js --watch=false --single-run --browsers=ChromeHeadlessCI",
