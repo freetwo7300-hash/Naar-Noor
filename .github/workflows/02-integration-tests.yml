@@ -88,11 +88,11 @@ jobs:
         working-directory: naar-noor
 
       - name: Wait for frontend to be ready
-        run: npx wait-on http://localhost:4200 --timeout 60000
+        run: npx wait-on http://localhost:5000 --timeout 120000
         working-directory: naar-noor
 
       - name: Run Cypress E2E tests
-        run: npx cypress run --headless --browser chrome
+        run: npx cypress run --headless --browser chrome --config baseUrl=http://localhost:5000
         working-directory: naar-noor
 
       - name: Upload Cypress screenshots (on failure)
