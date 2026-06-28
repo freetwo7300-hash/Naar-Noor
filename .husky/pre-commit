@@ -62,6 +62,14 @@ run_frontend_tests() {
     return 1
   fi
 
+  # Skip if node_modules is not installed yet
+  if [ ! -d "naar-noor/node_modules" ]; then
+    echo "⚠️  node_modules not found - run 'npm install' in naar-noor first"
+    echo "    Skipping frontend tests"
+    echo ""
+    return 0
+  fi
+
   (
     cd naar-noor
     npm test -- --run 2>/dev/null
