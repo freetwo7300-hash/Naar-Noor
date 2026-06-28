@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global Styles */
+/* ── Global Styles ────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
@@ -13,22 +13,14 @@ body {
   padding: 0;
   background-color: #0a0a0a;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: #1f1f1f;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #C65A1E;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track  { background: #0a0a0a; }
+::-webkit-scrollbar-thumb  { background: #1f1f1f; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C65A1E; }
 
 /* Date picker */
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -87,3 +79,103 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: rgba(198, 90, 30, 0.25);
   color: #fff;
 }
+
+/* ════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES
+   Applied when html has class="theme-light"
+   ════════════════════════════════════════════════════ */
+
+html.theme-light {
+  color-scheme: light;
+}
+
+html.theme-light body {
+  background-color: #f5efe8;
+}
+
+/* Scrollbar */
+html.theme-light ::-webkit-scrollbar-track  { background: #ede6dc; }
+html.theme-light ::-webkit-scrollbar-thumb  { background: #c9bfb0; }
+html.theme-light ::-webkit-scrollbar-thumb:hover { background: #C65A1E; }
+
+/* ── Background surfaces ───────────────────────────── */
+html.theme-light .bg-\[\#0a0a0a\]   { background-color: #f5efe8 !important; }
+html.theme-light .bg-\[\#0d0d0d\]   { background-color: #ede6dc !important; }
+html.theme-light .bg-\[\#111\]      { background-color: #e3dbd0 !important; }
+html.theme-light .bg-\[\#111111\]   { background-color: #e3dbd0 !important; }
+
+/* Header & mobile menu (with opacity) */
+html.theme-light [data-cy="header"] {
+  background-color: rgba(245, 239, 232, 0.88) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.09) !important;
+}
+html.theme-light .bg-\[\#0a0a0a\]\/80  { background-color: rgba(245, 239, 232, 0.88) !important; }
+html.theme-light .bg-\[\#0a0a0a\]\/95  { background-color: rgba(245, 239, 232, 0.97) !important; }
+
+/* ── Text ───────────────────────────────────────────── */
+html.theme-light .text-white     { color: #1a1208 !important; }
+html.theme-light .text-neutral-200 { color: #2a2018 !important; }
+html.theme-light .text-neutral-300 { color: #3d3020 !important; }
+html.theme-light .text-neutral-400 { color: #64564a !important; }
+html.theme-light .text-neutral-500 { color: #8c7d68 !important; }
+html.theme-light .text-neutral-600 { color: #a09382 !important; }
+html.theme-light .text-neutral-700 { color: #b8ac9a !important; }
+
+/* ── Borders ────────────────────────────────────────── */
+html.theme-light .border-white\/5   { border-color: rgba(0, 0, 0, 0.07) !important; }
+html.theme-light .border-white\/8   { border-color: rgba(0, 0, 0, 0.09) !important; }
+html.theme-light .border-white\/10  { border-color: rgba(0, 0, 0, 0.11) !important; }
+html.theme-light .border-white\/25  { border-color: rgba(0, 0, 0, 0.22) !important; }
+
+/* ── Subtle interactive backgrounds ────────────────── */
+html.theme-light .bg-white\/5   { background-color: rgba(0, 0, 0, 0.04) !important; }
+html.theme-light .bg-white\/10  { background-color: rgba(0, 0, 0, 0.07) !important; }
+html.theme-light .hover\:bg-white\/5:hover  { background-color: rgba(0, 0, 0, 0.05) !important; }
+html.theme-light .hover\:bg-white\/10:hover { background-color: rgba(0, 0, 0, 0.09) !important; }
+
+/* ── Dividers ───────────────────────────────────────── */
+html.theme-light .divide-white\/5 > * + * { border-color: rgba(0, 0, 0, 0.07) !important; }
+
+/* ── Forms / Inputs ────────────────────────────────── */
+html.theme-light input:not([type="submit"]):not([type="button"]):not([type="range"]):not([type="color"]):not([type="checkbox"]):not([type="radio"]),
+html.theme-light textarea,
+html.theme-light select {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #1a1208 !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+html.theme-light input::placeholder,
+html.theme-light textarea::placeholder {
+  color: #a0937d !important;
+}
+
+html.theme-light input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: none;
+  opacity: 0.55;
+}
+
+/* ── Neutral button/icon surfaces ──────────────────── */
+html.theme-light .border-white\/10.text-neutral-400 {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+/* ── Skeleton in light mode ─────────────────────────── */
+html.theme-light .skeleton {
+  background: linear-gradient(90deg, #ded7cc 25%, #ebe3d8 50%, #ded7cc 75%);
+  background-size: 800px 100%;
+}
+
+/* ── Animated background — tone down in light mode ─── */
+html.theme-light app-animated-background canvas,
+html.theme-light app-animated-background {
+  opacity: 0.06 !important;
+}
+
+/* ── Auth modal adjustments for light mode ─────────── */
+html.theme-light .shadow-\[0_24px_80px_rgba\(0\,0\,0\,0\.6\)\] {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Neutral-700 text used for small labels */
+html.theme-light .text-neutral-700 { color: #a89e90 !important; }

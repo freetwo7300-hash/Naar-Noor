@@ -1,1 +1,12 @@
-/* Component-specific styles if needed */
+/* Header component styles */
+
+/* Active nav link highlight */
+a.active-link {
+  color: #ffffff;
+}
+
+/* User dropdown animation */
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
