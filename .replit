@@ -1,4 +1,4 @@
-modules = ["dotnet-7.0", "web", "nodejs-20", "dotnet-8.0", "python-3.11"]
+modules = ["dotnet-7.0", "nodejs-20", "web", "python-3.12"]
 [agent]
 expertMode = true
 stack = "BEST_EFFORT_FALLBACK"
@@ -38,21 +38,17 @@ outputType = "console"
 name = "Start application"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd naar-noor && npm run dev"
-waitForPort = 5000
-
 [workflows.workflow.metadata]
 outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd naar-noor && node node_modules/@angular/cli/bin/ng.js serve --port 5000 --host 0.0.0.0"
+waitForPort = 5000
 
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 8080
-externalPort = 8080
 
 [deployment]
 deploymentTarget = "autoscale"
