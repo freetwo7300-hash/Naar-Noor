@@ -10,8 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'reservations',
-    loadComponent: () => import('./pages/reservations/reservations.component').then(m => m.ReservationsPageComponent),
-    canActivate: [authGuard]
+    loadComponent: () => import('./pages/reservations/reservations.component').then(m => m.ReservationsPageComponent)
   },
   {
     path: 'about',
