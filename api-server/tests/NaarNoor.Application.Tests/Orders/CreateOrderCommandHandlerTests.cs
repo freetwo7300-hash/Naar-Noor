@@ -33,7 +33,7 @@ public class CreateOrderCommandHandlerTests : IAsyncLifetime
             Email: "test@example.com",
             PhoneNumber: "07700000000",
             Type: type,
-            Items: new List<CreateOrderItemDto>
+            Items: new List<OrderItemRequest>
             {
                 new(Guid.NewGuid(), "Momos", 8.95m, 2),
                 new(Guid.NewGuid(), "Sel Roti", 4.50m, 1)
@@ -98,7 +98,7 @@ public class CreateOrderCommandHandlerTests : IAsyncLifetime
             Email: "amount@test.com",
             PhoneNumber: "07700000001",
             Type: "collection",
-            Items: new List<CreateOrderItemDto>
+            Items: new List<OrderItemRequest>
             {
                 new(Guid.NewGuid(), "Item A", 10.00m, 2),
                 new(Guid.NewGuid(), "Item B", 5.50m, 3)

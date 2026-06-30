@@ -12,8 +12,8 @@ module.exports = {
     'node_modules/(?!(@angular|rxjs|zone.js)/)',
   ],
   collectCoverage: true,
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'cobertura'],
+  coverageDirectory: '../frontend-coverage',
+  coverageReporters: ['text', 'lcov', 'cobertura', 'json'],
   collectCoverageFrom: [
     'src/app/services/**/*.ts',
     'src/app/components/**/*.ts',
