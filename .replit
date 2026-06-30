@@ -1,4 +1,4 @@
-modules = ["dotnet-7.0", "nodejs-20", "web", "python-3.12"]
+modules = ["nodejs-20", "web", "python-3.12", "dotnet-8.0"]
 [agent]
 expertMode = true
 stack = "BEST_EFFORT_FALLBACK"
@@ -49,6 +49,10 @@ waitForPort = 5000
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 8080
+externalPort = 8080
 
 [deployment]
 deploymentTarget = "autoscale"
